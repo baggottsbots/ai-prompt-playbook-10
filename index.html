@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/ai-prompt-playbook-10/">
+<!-- BASE:END -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+
+<!-- SEO Meta Tags -->
+<title>The AI Prompt Playbook — 100+ Battle-Tested AI Prompts | PayMeGPT</title>
+<meta name="description" content="Stop guessing with AI. Get 100+ battle-tested prompts for content creation, sales, automation, and business growth. One-time $10 purchase. Instant access." />
+<meta property="og:title" content="The AI Prompt Playbook — 100+ Battle-Tested AI Prompts | PayMeGPT" />
+<meta property="og:description" content="Stop guessing with AI. Get 100+ battle-tested prompts for content creation, sales, automation, and business growth. One-time $10 purchase. Instant access." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The AI Prompt Playbook — 100+ Battle-Tested AI Prompts | PayMeGPT" />
+<meta name="twitter:description" content="Stop guessing with AI. Get 100+ battle-tested prompts for content creation, sales, automation, and business growth. One-time $10 purchase. Instant access." />
+<!-- End SEO Meta Tags -->
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=3958');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='aSuL5TQF';
+  var apiBase='https://paymegpt.com';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">Thank you for purchasing '+pName.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'.</p><button onclick="document.getElementById(\'payment-success-overlay\').remove();window.history.replaceState({},\'\',window.location.pathname);" style="padding:12px 32px;font-size:16px;font-weight:600;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;">Continue</button></div>';
+      document.body.appendChild(overlay);
+    }
+  });
+})();
+</script>
+<script data-donation>
+(function(){
+  var slug='aSuL5TQF';
+  var apiBase='https://paymegpt.com';
+  var currency='USD';
+  var minAmt=1000;var maxAmt=1000;
+  function fmtD(c){return new Intl.NumberFormat('en-US',{style:'currency',currency:currency}).format(c/100);}
+  window.__donationConfig={currency:currency,presets:[10],minAmount:1000/100,maxAmount:1000/100,formatAmount:fmtD,buttonColor:'#36D6B5',buttonText:'Get Instant Access - $10',thankYouMessage:'You\'re in. Check your email for your download link. Welcome to the PMG Fam.'};
+  function findDonEmail2(){var ids=['email','emailAddress','buyer-email','buyerEmail','donor-email','donorEmail','user-email','userEmail','contact-email'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.indexOf('@')>-1)return el.value.trim();}var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.indexOf('@')>-1)return inputs[j].value.trim();}return '';}
+  function findDonName2(){var ids=['name','fullName','full-name','donor-name','donorName','customer-name','user-name'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"])');for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}return '';}
+  window.__processDonation=function(a,b,c,d){
+    var amountCents,email='',name='',donorMessage='';
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents||(a.amount?Math.round(Number(a.amount)*100):0);
+      email=a.email||'';name=a.name||a.donorName||a.productName||a.label||'';donorMessage=a.message||a.donorMessage||'';
+    }else{
+      amountCents=typeof a==='number'?a:(parseInt(a,10)||0);
+      var rest=[b,c,d];var nonEmail=[];
+      for(var i=0;i<rest.length;i++){var v=rest[i];if(typeof v==='string'&&v){if(!email&&v.indexOf('@')>-1&&/^[^s@]+@[^s@]+.[^s@]+$/.test(v.trim())){email=v.trim();}else{nonEmail.push(v);}}}
+      name=nonEmail[0]||'';donorMessage=nonEmail[1]||'';
+    }
+    if(!email)email=findDonEmail2();
+    if(!name)name=findDonName2();
+    if(!amountCents||amountCents<minAmt){alert('Minimum donation is '+fmtD(minAmt));return Promise.reject('below_min');}
+    if(amountCents>maxAmt){alert('Maximum donation is '+fmtD(maxAmt));return Promise.reject('above_max');}
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return;}}
+    var successBase=window.location.href.split('?')[0];
+    fetch(apiBase+'/api/landing-pages/public/'+slug+'/donate/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:name||'',amountCents:amountCents,message:donorMessage||'',successUrl:successBase+'?donation=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?donation=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process donation');}
+    }).catch(function(){alert('Failed to connect to payment server.');});
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('donation')==='success'){
+      var overlay=document.createElement('div');overlay.id='donation-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Thank You!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">You\'re in. Check your email for your download link. Welcome to the PMG Fam.</p><button onclick="document.getElementById(\'donation-success-overlay\').remove();window.history.replaceState({},\'\',window.location.pathname);" style="padding:12px 32px;font-size:16px;font-weight:600;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;">Continue</button></div>';
+      document.body.appendChild(overlay);
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============================================================================ -->
+  <!-- NAVBAR: Minimal top bar with brand logo                                       -->
+  <!-- Features: Sticky, dark background, teal logo accent                          -->
+  <!-- ============================================================================ -->
+  <nav data-section="navbar" class="sticky top-0 z-50 w-full border-b border-white/5" style="background-color: rgba(13,13,13,0.95); backdrop-filter: blur(12px);">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="/ai-prompt-playbook-10/" class="flex items-center gap-2">
+        <span class="text-xl font-black tracking-tight">Pay<span style="color:#36D6B5;">Me</span>GPT</span>
+      </a>
+      <!-- Nav CTA -->
+      <button
+        onclick="handlePurchase()"
+        class="btn-teal text-sm font-bold px-5 py-2 hidden sm:inline-block"
+      >
+        Get it for $10 →
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============================================================================ -->
+    <!-- HERO SECTION: Main landing area with headline, subtext, product image, CTA   -->
+    <!-- Features: Dark gradient background, centered layout, floating product image  -->
+    <!-- Mobile Padding: px-4 ensures headline never touches viewport edges           -->
+    <!-- ============================================================================ -->
+    <section data-section="hero" class="relative overflow-hidden px-4 py-16 md:py-24 lg:py-32" style="background-color: #0d0d0d;">
+      <!-- Background glow orb -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(circle, #36D6B5 0%, transparent 70%); filter: blur(80px);"></div>
+
+      <div class="max-w-6xl mx-auto relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+          <!-- Left: Text Content -->
+          <div class="flex-1 text-center lg:text-left">
+            <!-- Urgency Badge -->
+            <div class="inline-flex items-center gap-2 urgency-badge px-4 py-2 text-sm font-semibold mb-6">
+              <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse" style="background-color:#36D6B5;"></span>
+              Limited Time — $10 One-Time Price
+            </div>
+
+            <!-- Main Headline -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-6">
+              Stop Guessing.<br />
+              <span class="gradient-text">Start Getting Results.</span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+              100+ battle-tested AI prompts that actually work — for <strong class="text-white">content, sales, automation,</strong> and business growth.
+            </p>
+            
+            
+            <input type="email" id="email-hero" placeholder="Enter your email" />
+            <div id="email-hero-err">Please enter a valid email address.</div>
+
+            <!-- CTA Button -->
+            <button
+              onclick="handleCheckout('email-hero')"
+              class="btn-teal text-base sm:text-lg font-black px-8 py-4 w-full sm:w-auto mb-4"
+            >
+              Get Instant Access for $10 →
+            </button>
+
+            <!-- Trust signals below CTA -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm text-gray-400 mt-4">
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Instant download
+              </span>
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                No subscription
+              </span>
+              <span class="flex items-center gap-1">
+                <svg class="w-4 h-4" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Works with ChatGPT & Claude
+              </span>
+            </div>
+          </div>
+
+          <!-- Right: Product Mockup Image -->
+          <div class="flex-1 flex justify-center lg:justify-end">
+            <div class="relative">
+              <!-- Glow behind image -->
+              <div class="absolute inset-0 rounded-2xl opacity-30 blur-2xl" style="background: radial-gradient(circle, #36D6B5, transparent 70%);"></div>
+              <img
+                src="https://paymegpt.com/objects/generated-images/2/1778646685008-9fd279826f3e4199.png"
+                alt="The AI Prompt Playbook — digital product mockup"
+                class="product-float relative z-10 w-full max-w-sm lg:max-w-md rounded-2xl shadow-2xl"
+                style="box-shadow: 0 24px 80px rgba(54,214,181,0.2);"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ============================================================================ -->
+    <!-- WHAT'S INSIDE SECTION: 3-column grid showing all prompt categories           -->
+    <!-- Features: Teal icon backgrounds, hover cards, prompt counts per category     -->
+    <!-- ============================================================================ -->
+    <section data-section="features" class="px-4 py-16 md:py-24" style="background-color: #111111;">
+      <div class="max-w-6xl mx-auto">
+
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <span class="teal-line mb-4 block mx-auto"></span>
+          <h2 class="text-3xl sm:text-4xl font-black mb-4">What's Inside The Playbook</h2>
+          <p class="text-gray-400 text-lg max-w-xl mx-auto">Six categories. 100+ prompts. Copy, paste, and watch your AI outputs transform.</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Feature Card 1: Content Creation -->
+          <div class="feature-card p-6">
+            <div class="icon-bg mb-4">
+              <!-- Pencil icon -->
+              <svg class="w-6 h-6" style="color:#36D6B5;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a4 4 0 01-1.414.828l-3 1 1-3a4 4 0 01.828-1.414z"/></svg>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#36D6B5;">25+ Prompts</div>
+            <h3 class="text-lg font-bold mb-2">Content Creation</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Blogs, captions, email subject lines, video scripts, newsletters, and more — written in your voice, in seconds.</p>
+          </div>
+
+          <!-- Feature Card 2: Sales & Marketing -->
+          <div class="feature-card p-6">
+            <div class="icon-bg mb-4">
+              <!-- Chart icon -->
+              <svg class="w-6 h-6" style="color:#36D6B5;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#36D6B5;">20+ Prompts</div>
+            <h3 class="text-lg font-bold mb-2">Sales & Marketing</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Craft irresistible offers, write high-converting ads, DMs that get replies, and follow-up sequences that close deals.</p>
+          </div>
+
+          <!-- Feature Card 3: AI Automation -->
+          <div class="feature-card p-6">
+            <div class="icon-bg mb-4">
+              <!-- Lightning bolt icon -->
+              <svg class="w-6 h-6" style="color:#36D6B5;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#36D6B5;">20+ Prompts</div>
+            <h3 class="text-lg font-bold mb-2">AI Automation</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Build smarter workflows, chatbot instructions, and AI agent prompts that run your business on autopilot.</p>
+          </div>
+
+          <!-- Feature Card 4: Business Strategy -->
+          <div class="feature-card p-6">
+            <div class="icon-bg mb-4">
+              <!-- Briefcase icon -->
+              <svg class="w-6 h-6" style="color:#36D6B5;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#36D6B5;">15+ Prompts</div>
+            <h3 class="text-lg font-bold mb-2">Business Strategy</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Generate SOPs, business plans, pitch decks, and strategic frameworks that would cost thousands from a consultant.</p>
+          </div>
+
+          <!-- Feature Card 5: Social Media -->
+          <div class="feature-card p-6">
+            <div class="icon-bg mb-4">
+              <!-- Share icon -->
+              <svg class="w-6 h-6" style="color:#36D6B5;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#36D6B5;">15+ Prompts</div>
+            <h3 class="text-lg font-bold mb-2">Social Media</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Viral post formulas, scroll-stopping hooks, comment strategies, and content calendars built for engagement.</p>
+          </div>
+
+          <!-- Feature Card 6: Cold Outreach Bonus -->
+          <div class="feature-card p-6" style="border-color: rgba(54,214,181,0.3); background: linear-gradient(135deg, rgba(54,214,181,0.05) 0%, #1a1a1a 100%);">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="icon-bg">
+                <!-- Gift icon -->
+                <svg class="w-6 h-6" style="color:#36D6B5;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4H5z"/></svg>
+              </div>
+              <span class="text-xs font-black uppercase tracking-widest px-2 py-1 rounded" style="background:rgba(54,214,181,0.15); color:#36D6B5;">BONUS</span>
+            </div>
+            <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color:#36D6B5;">10+ Prompts</div>
+            <h3 class="text-lg font-bold mb-2">Cold Outreach & Lead Gen</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">Cold email sequences, LinkedIn DM templates, and lead generation prompts that fill your pipeline without sounding spammy.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ============================================================================ -->
+    <!-- WHO IT'S FOR SECTION: Target audience callout                                -->
+    <!-- Features: Two-column layout, icon list items, teal highlights               -->
+    <!-- ============================================================================ -->
+    <section data-section="who-its-for" class="px-4 py-16 md:py-24" style="background-color: #0d0d0d;">
+      <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+
+          <!-- Left: Headline -->
+          <div class="flex-1 text-center lg:text-left">
+            <span class="teal-line mb-4 block mx-auto lg:mx-0"></span>
+            <h2 class="text-3xl sm:text-4xl font-black mb-4">Built for People Who<br /><span class="gradient-text">Actually Use AI</span></h2>
+            <p class="text-gray-400 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+              If you've ever stared at a blank ChatGPT prompt box and wondered why the output was mediocre — this playbook fixes that. Permanently.
+            </p>
+          </div>
+
+          <!-- Right: Audience List -->
+          <div class="flex-1 w-full">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+              <!-- Audience Item -->
+              <div class="flex items-start gap-3 p-4 rounded-xl" style="background-color:#1a1a1a; border:1px solid #222;">
+                <span class="text-2xl">🚀</span>
+                <div>
+                  <div class="font-bold text-white mb-1">Entrepreneurs</div>
+                  <div class="text-gray-400 text-sm">Build faster, pitch better, and scale smarter with AI doing the heavy lifting.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-xl" style="background-color:#1a1a1a; border:1px solid #222;">
+                <span class="text-2xl">🎯</span>
+                <div>
+                  <div class="font-bold text-white mb-1">Coaches & Consultants</div>
+                  <div class="text-gray-400 text-sm">Create programs, proposals, and content without spending hours writing from scratch.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-xl" style="background-color:#1a1a1a; border:1px solid #222;">
+                <span class="text-2xl">🏢</span>
+                <div>
+                  <div class="font-bold text-white mb-1">Agency Owners</div>
+                  <div class="text-gray-400 text-sm">Deliver better results for clients faster, with prompts built for real agency workflows.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-xl" style="background-color:#1a1a1a; border:1px solid #222;">
+                <span class="text-2xl">✍️</span>
+                <div>
+                  <div class="font-bold text-white mb-1">Content Creators</div>
+                  <div class="text-gray-400 text-sm">Never run out of ideas. Generate a month of content in an afternoon.</div>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 p-4 rounded-xl sm:col-span-2" style="background-color:rgba(54,214,181,0.06); border:1px solid rgba(54,214,181,0.2);">
+                <span class="text-2xl">🤖</span>
+                <div>
+                  <div class="font-bold text-white mb-1">Anyone Using ChatGPT, Claude, or Any AI Tool</div>
+                  <div class="text-gray-400 text-sm">If you're not using proven prompt frameworks, you're leaving 90% of AI's power on the table. This fixes that.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ============================================================================ -->
+    <!-- TESTIMONIALS SECTION: Social proof with 3 testimonial cards                  -->
+    <!-- Features: Star ratings, bold result callouts, avatar initials               -->
+    <!-- ============================================================================ -->
+    <section data-section="testimonials" class="px-4 py-16 md:py-24" style="background-color: #111111;">
+      <div class="max-w-6xl mx-auto">
+
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+          <span class="teal-line mb-4 block mx-auto"></span>
+          <h2 class="text-3xl sm:text-4xl font-black mb-4">Real People. Real Results.</h2>
+          <p class="text-gray-400 text-lg">Here's what happens when you stop guessing and start using prompts that work.</p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Testimonial 1 -->
+          <div class="testimonial-card p-6">
+            <div class="stars text-lg mb-3">★★★★★</div>
+            <p class="text-white font-medium leading-relaxed mb-6 text-sm">
+              "These prompts cut my content creation time in half. I used to spend 3 hours writing a single email sequence — now I have a full campaign drafted in 20 minutes. Worth 100x the price."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background-color:#36D6B5; color:#0d0d0d;">JR</div>
+              <div>
+                <div class="font-bold text-white text-sm">Jordan R.</div>
+                <div class="text-gray-500 text-xs">Email Marketing Coach</div>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white/5">
+              <span class="text-xs font-black" style="color:#36D6B5;">⚡ Saved 10+ hours/week</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimonial-card p-6" style="border-color: rgba(54,214,181,0.25);">
+            <div class="stars text-lg mb-3">★★★★★</div>
+            <p class="text-white font-medium leading-relaxed mb-6 text-sm">
+              "I run a social media agency and the social + sales prompts alone paid for this a hundred times over in the first week. My clients are getting better results and I'm working less. Insane ROI."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background-color:#36D6B5; color:#0d0d0d;">MS</div>
+              <div>
+                <div class="font-bold text-white text-sm">Marcus S.</div>
+                <div class="text-gray-500 text-xs">Social Media Agency Owner</div>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white/5">
+              <span class="text-xs font-black" style="color:#36D6B5;">⚡ 3x client results in 30 days</span>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimonial-card p-6">
+            <div class="stars text-lg mb-3">★★★★★</div>
+            <p class="text-white font-medium leading-relaxed mb-6 text-sm">
+              "I was skeptical — $10 felt too cheap for something this good. The automation prompts helped me set up an entire client onboarding chatbot in one afternoon. My team was blown away."
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm" style="background-color:#36D6B5; color:#0d0d0d;">AL</div>
+              <div>
+                <div class="font-bold text-white text-sm">Aisha L.</div>
+                <div class="text-gray-500 text-xs">SaaS Founder & Operator</div>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-white/5">
+              <span class="text-xs font-black" style="color:#36D6B5;">⚡ Built automation in 1 afternoon</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ============================================================================ -->
+    <!-- PRICING / CTA SECTION: Big bold price, value stack, final purchase button    -->
+    <!-- Features: Crossed-out value, urgency messaging, teal CTA button             -->
+    <!-- ============================================================================ -->
+    <section data-section="pricing" class="px-4 py-16 md:py-24" style="background-color: #0d0d0d;">
+      <div class="max-w-3xl mx-auto text-center">
+
+        <!-- Section Header -->
+        <span class="teal-line mb-4 block mx-auto"></span>
+        <h2 class="text-3xl sm:text-4xl font-black mb-2">Get Everything. Pay Once.</h2>
+        <p class="text-gray-400 text-lg mb-10">No upsells. No subscription. No BS.</p>
+
+        <!-- Price Box -->
+        <div class="price-box p-8 md:p-12 mb-8">
+
+          <!-- Price Display -->
+          <div class="mb-8">
+            <div class="flex items-center justify-center gap-4 mb-2">
+              <span class="text-2xl strikethrough font-bold">$197</span>
+              <span class="text-6xl sm:text-7xl font-black" style="color:#36D6B5;">$10</span>
+            </div>
+            <div class="text-gray-300 font-semibold text-lg">One time. Yours forever.</div>
+          </div>
+
+          <!-- Value Stack -->
+          <div class="text-left max-w-sm mx-auto mb-8 space-y-3">
+
+            <div class="flex items-center justify-between py-2 border-b border-white/5">
+              <span class="text-gray-300 text-sm flex items-center gap-2">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                25+ Content Creation Prompts
+              </span>
+              <span class="strikethrough text-xs text-gray-500">$37</span>
+            </div>
+
+            <div class="flex items-center justify-between py-2 border-b border-white/5">
+              <span class="text-gray-300 text-sm flex items-center gap-2">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                20+ Sales & Marketing Prompts
+              </span>
+              <span class="strikethrough text-xs text-gray-500">$47</span>
+            </div>
+
+            <div class="flex items-center justify-between py-2 border-b border-white/5">
+              <span class="text-gray-300 text-sm flex items-center gap-2">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                20+ AI Automation Prompts
+              </span>
+              <span class="strikethrough text-xs text-gray-500">$47</span>
+            </div>
+
+            <div class="flex items-center justify-between py-2 border-b border-white/5">
+              <span class="text-gray-300 text-sm flex items-center gap-2">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                15+ Business Strategy Prompts
+              </span>
+              <span class="strikethrough text-xs text-gray-500">$27</span>
+            </div>
+
+            <div class="flex items-center justify-between py-2 border-b border-white/5">
+              <span class="text-gray-300 text-sm flex items-center gap-2">
+                <svg class="w-4 h-4 flex-shrink-0" style="color:#36D6B5;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                15+ Social Media Prompts
+              </span>
+              <span class="strikethrough text-xs text-gray-500">$27</span>
+            </div>
+
+            <div class="flex items-center justify-between py-2">
+              <span class="text-sm flex items-center gap-2 font-semibold" style="color:#36D6B5;">
+                <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                BONUS: 10+ Cold Outreach Prompts
+              </span>
+              <span class="strikethrough text-xs text-gray-500">$12</span>
+            </div>
+
+          </div>
+
+          <!-- Total Value -->
+          <div class="flex items-center justify-center gap-3 mb-8 py-3 rounded-lg" style="background:rgba(54,214,181,0.06); border:1px solid rgba(54,214,181,0.15);">
+            <span class="text-gray-400 font-semibold">Total Value:</span>
+            <span class="strikethrough text-gray-400 font-bold">$197</span>
+            <span class="text-white font-black text-xl">→ You Pay: <span style="color:#36D6B5;">$10</span></span>
+          </div>
+
+          <!-- Final CTA Button -->
+          <button
+            onclick="handlePurchase()"
+            class="btn-teal text-lg font-black px-10 py-5 w-full mb-4"
+          >
+            Get Instant Access for $10 →
+          </button>
+
+          <!-- Urgency Message -->
+          <div class="flex items-center justify-center gap-2 text-sm font-semibold" style="color:#36D6B5;">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+            Grab it before we raise the price
+          </div>
+
+          <!-- Secure payment note -->
+          <p class="text-gray-500 text-xs mt-4">🔒 Secure checkout · Instant delivery · One-time payment</p>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================================ -->
+    <!-- FINAL CTA BANNER: Last-chance urgency strip above footer                     -->
+    <!-- Features: Full-width teal-tinted background, bold single CTA                -->
+    <!-- ============================================================================ -->
+    <section data-section="cta" class="px-4 py-12 md:py-16 text-center" style="background: linear-gradient(135deg, rgba(54,214,181,0.08) 0%, rgba(13,13,13,1) 100%); border-top: 1px solid rgba(54,214,181,0.15);">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-black mb-3">Your AI outputs will never be the same.</h2>
+        <p class="text-gray-400 mb-6">100+ prompts. $10. One time. What are you waiting for?</p>
+        <div class="mb-4">
+          <input 
+            type="email" 
+            id="email-cta" 
+            placeholder="Enter your email address" 
+            style="background: #111; color: white; border: 1px solid #333; border-radius: 6px; padding: 12px; width: 100%; font-size: 16px;" 
+            aria-describedby="email-cta-err"
+          />
+          <p id="email-cta-err" style="color: #36D6B5; font-size: 13px; margin-top: 6px; display: none;">Please enter your email to continue.</p>
+        </div>
+        <button
+          onclick="handleCheckout('email-cta')"
+          class="btn-teal text-base font-black px-8 py-4"
+        >
+          Yes, I Want The AI Prompt Playbook →
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================================ -->
+  <!-- FOOTER: PayMeGPT branding, copyright, minimal links                          -->
+  <!-- ============================================================================ -->
+  <footer data-section="footer" class="px-4 py-10 border-t border-white/5" style="background-color: #0d0d0d;">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+      <!-- Brand -->
+      <div class="font-black text-white text-lg">Pay<span style="color:#36D6B5;">Me</span>GPT</div>
+      <!-- Copyright -->
+      <div>© 2026 PayMeGPT. All rights reserved.</div>
+      <!-- Links -->
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms</a>
+        <a href="mailto:hello@paymegpt.com" class="hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================================ -->
+  <!-- JAVASCRIPT: Purchase handler and platform integration                        -->
+  <!-- ============================================================================ -->
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
