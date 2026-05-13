@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://baggottsbots.github.io/ai-prompt-playbook-10/sitemap.xml
